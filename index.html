@@ -4,113 +4,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navya's AI/ML Portfolio</title>
-    <style>
-        /* Basic CSS for a clean look */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        header {
+    <link rel="stylesheet" href="style.css"> <style>
+        /* ADD ANY NEW, SMALL, PAGE-SPECIFIC STYLES HERE IF NEEDED.
+           For larger, general styles, always put them in style.css */
+
+        /* Styles for internal navigation */
+        .navbar {
             text-align: center;
             margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            background-color: #f0f8ff; /* Light blue background for nav */
+            border-bottom: 1px solid #e0e7ff;
+            position: sticky; /* Makes the nav stick to the top when scrolling */
+            top: 0;
+            z-index: 1000; /* Ensures nav is above other content */
         }
-        header h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
+        .navbar a {
+            color: #3498db;
+            text-decoration: none;
+            padding: 0 15px;
+            font-weight: bold;
+            transition: color 0.2s ease;
         }
-        header p {
-            font-size: 1.1em;
-            color: #777;
+        .navbar a:hover {
+            color: #2980b9;
         }
-        .projects {
-            display: grid; /* Modern layout for project cards */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
-            gap: 25px; /* Space between cards */
-        }
-        .project-card {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
+
+        /* Styles for About Me section */
+        .about-me {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background-color: #fff;
             border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.08);
-            transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        .project-card:hover {
-            transform: translateY(-5px); /* Lift card on hover */
+        .about-me h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
         }
-        .project-card h3 {
-            color: #34495e;
-            margin-top: 0;
-        }
-        .project-card p {
-            font-size: 0.95em;
+        .about-me p {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            font-size: 1.1em;
+            line-height: 1.8;
             color: #555;
         }
-        .project-card .tech-stack span {
-            display: inline-block;
-            background-color: #e0e7ff;
-            color: #4a67a3;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin-right: 5px;
-            margin-bottom: 5px;
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Makes the image circular */
+            object-fit: cover; /* Ensures image fills the circle */
+            margin-bottom: 20px;
+            border: 4px solid #3498db; /* Blue border around photo */
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
-        .project-card .links a {
-            display: inline-block;
-            background-color: #3498db;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
+        .about-me .links {
+            margin-top: 20px;
+        }
+        .about-me .links a {
+            color: #3498db;
             text-decoration: none;
-            margin-right: 10px;
-            margin-top: 10px;
+            font-weight: bold;
+            margin: 0 15px;
+            transition: color 0.2s ease;
+        }
+        .about-me .links a:hover {
+            color: #2980b9;
+        }
+
+
+        /* Styles for Skills section */
+        .skills-section h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .skills-list {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+        }
+        .skills-list h3 {
+            color: #34495e;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-top: 20px;
+            margin-bottom: 15px;
+        }
+        .skills-list ul {
+            list-style: none; /* Remove default bullet points */
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Responsive 2-4 columns */
+            gap: 12px;
+        }
+        .skills-list ul li {
+            background-color: #e6f2f9; /* Light blue background for skill tags */
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.9em;
+            color: #2c3e50;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             transition: background-color 0.2s ease;
         }
-        .project-card .links a:hover {
-            background-color: #2980b9;
+        .skills-list ul li:hover {
+            background-color: #d1ecf1; /* Slightly darker on hover */
         }
-        footer {
+
+        /* Styles for Contact section */
+        .contact-section {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #777;
-            font-size: 0.9em;
+            margin-top: 60px;
+            padding: 40px;
+            background-color: #e0f2f7; /* Very light blue background */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
+        .contact-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .contact-section a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.2s ease;
+        }
+        .contact-section a:hover {
+            color: #2980b9;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
+        <nav class="navbar">
+            <a href="#about-me">About Me</a> |
+            <a href="#projects">Projects</a> |
+            <a href="#skills">Skills</a> |
+            <a href="#contact">Contact</a>
+        </nav>
+
         <header>
-            <h1>Hi, I'm Navya!</h1>
-            <p>An aspiring AI/ML enthusiast passionate about building intelligent systems. Explore my projects below!</p>
-            <p>
-                <a href="mailto:navyagopika1@gmail.com" style="color: #3498db; text-decoration: none;">your_email@example.com</a> |
-                <a href="https://github.com/navya7003" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Profile</a>
-            </p>
+            <h1>Hi, I'm Navya Gopika!</h1>
+            <p>An aspiring AI/ML enthusiast passionate about building intelligent systems.</p>
         </header>
 
-        <section class="projects-section">
+        <section id="about-me" class="about-me">
+            <section id="about-me" class="about-me">
+    <div class="about-content-wrapper"> <div class="about-text-content"> <h2>About Me</h2>
+            <p>I'm a passionate and driven aspiring AI/ML engineer, eager to explore the world of intelligent systems and build solutions that make a real impact. My journey into AI began with a fascination for how machines can learn and adapt, leading me to delve into deep learning, data analysis, and programming. I thrive on challenges and am constantly seeking new opportunities to expand my knowledge and skills in this rapidly evolving field. My goal is to contribute to innovative projects that push the boundaries of what's possible with artificial intelligence.</p>
+            <div class="links">
+                <a href="mailto:navyagopika1@gmail.com">Email Me</a> |
+                <a href="https://github.com/navya7003" target="_blank">GitHub Profile</a>
+                </div>
+        </div>
+        <div class="about-photo-content"> <img src="assets/ai_banner.png" alt="Your Profile Photo" class="profile-photo">
+        </div>
+    </div>
+</section>
+        </section>
+
+        <section id="projects" class="projects-section">
             <h2>My Projects</h2>
             <div class="projects">
 
                 <div class="project-card">
                     <h3>Handwritten Digit Recognizer</h3>
+                    <img src="assets/project1.png" alt="Handwritten Digit Recognizer Demo" style="width:100%; height:auto; border-radius: 5px; margin-bottom: 15px;">
                     <p>A deep learning model built with TensorFlow/Keras that accurately identifies handwritten digits (0-9) from images. This project demonstrates foundational skills in Convolutional Neural Networks (CNNs), data preprocessing, model training, and evaluation.</p>
                     <div class="tech-stack">
                         <span>Python</span>
@@ -125,6 +191,51 @@
                 </div>
 
                 </div>
+        </section>
+
+        <section id="skills" class="skills-section">
+            <h2>My Skills</h2>
+            <div class="skills-list">
+                <h3>Programming Languages</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>SQL (Basic)</li>
+                    <li>HTML & CSS (Basic)</li>
+                </ul>
+
+                <h3>Machine Learning & Deep Learning Frameworks</h3>
+                <ul>
+                    <li>TensorFlow</li>
+                    <li>Keras</li>
+                    <li>Scikit-learn (Basic)</li>
+                </ul>
+
+                <h3>Libraries & Tools</h3>
+                <ul>
+                    <li>NumPy</li>
+                    <li>Pandas (Basic)</li>
+                    <li>Matplotlib</li>
+                    <li>Jupyter Notebooks</li>
+                    <li>VS Code</li>
+                    <li>Git</li>
+                    <li>GitHub</li>
+                </ul>
+
+                <h3>Concepts & Methodologies</h3>
+                <ul>
+                    <li>Convolutional Neural Networks (CNNs)</li>
+                    <li>Data Preprocessing</li>
+                    <li>Model Training & Evaluation</li>
+                    <li>Supervised Learning</li>
+                    <li>Version Control</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Get in Touch</h2>
+            <p>I'm always open to discussing new projects, interesting opportunities, or just saying hello!</p>
+            <a href="mailto:navyagopika1@gmail.com">navyagopika1@gmail.com</a>
         </section>
 
         <footer>

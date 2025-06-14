@@ -1,0 +1,363 @@
+/* General Body and Container Styles */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* A more modern font stack */
+    margin: 0;
+    padding: 0; /* Remove body padding, container will manage it */
+    background-color: #f4f7f6; /* Light, calming background */
+    color: #333;
+    line-height: 1.6;
+    scroll-behavior: smooth; /* Smooth scrolling for internal links */
+}
+
+.container {
+    max-width: 1000px; /* Slightly wider container for more content */
+    margin: 0 auto; /* Centers the container */
+    background-color: #ffffff;
+    padding: 30px 40px; /* More padding inside the container */
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); /* More pronounced shadow */
+    margin-top: 30px; /* Space above container */
+    margin-bottom: 30px; /* Space below container */
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+header h1 {
+    color: #2c3e50;
+    font-size: 2.8em; /* Larger, more impactful heading */
+    margin-bottom: 12px;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #777;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Section Headings (for About, Projects, Skills, Contact) */
+section h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-size: 2.2em;
+    margin-bottom: 40px;
+    padding-top: 20px; /* Space above section heading */
+}
+
+/* Navigation Bar (Sticky at Top) */
+.navbar {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 15px 0;
+    background-color: #e0f2f7; /* Light blue background for nav */
+    border-bottom: 1px solid #cce7f0;
+    position: sticky; /* Makes the nav stick to the top when scrolling */
+    top: 0; /* Sticks to the top edge */
+    z-index: 1000; /* Ensures nav is above other content */
+    border-radius: 8px 8px 0 0; /* Rounded top corners */
+}
+
+.navbar a {
+    color: #2980b9; /* Slightly darker blue for links */
+    text-decoration: none;
+    padding: 0 20px;
+    font-weight: bold;
+    transition: color 0.2s ease;
+    font-size: 1.05em;
+}
+
+.navbar a:hover {
+    color: #1a5276; /* Even darker on hover */
+}
+
+/* About Me Section - Flexbox Layout */
+.about-me {
+    margin-bottom: 60px;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+}
+
+.about-content-wrapper {
+    display: flex; /* Arranges children horizontally */
+    flex-direction: row; /* Default: items are in a row */
+    flex-wrap: wrap; /* Allows items to wrap to the next line on smaller screens */
+    justify-content: center; /* Centers items horizontally */
+    align-items: center; /* Vertically aligns items in the middle */
+    gap: 40px; /* Space between the text content and the photo */
+}
+
+.about-text-content {
+    flex: 2; /* Takes up 2 parts of available space */
+    min-width: 300px; /* Minimum width for text content */
+    text-align: left; /* Text aligns left within its own column */
+}
+
+.about-photo-content {
+    flex: 1; /* Takes up 1 part of available space */
+    text-align: right; /* Aligns the photo to the right within its column */
+    min-width: 180px; /* Minimum width for photo content */
+}
+
+.about-me h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-align: left; /* Align heading left within its column */
+}
+
+.about-me p {
+    margin-bottom: 25px;
+    font-size: 1.15em;
+    line-height: 1.8;
+    color: #444;
+}
+
+.profile-photo {
+    width: 200px; /* Fixed width/height for circular photo */
+    height: 200px;
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures image fills the circle without distortion */
+    border: 5px solid #3498db; /* Blue border around photo */
+    box-shadow: 0 0 20px rgba(0,0,0,0.15); /* Soft shadow for depth */
+}
+
+.about-me .links {
+    margin-top: 30px;
+    text-align: left; /* Align links left within its column */
+}
+
+.about-me .links a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 20px; /* Space between links */
+    font-size: 1.1em;
+    transition: color 0.2s ease;
+}
+
+.about-me .links a:hover {
+    color: #2980b9;
+}
+
+
+/* Projects Section - Grid Layout for Cards */
+.projects-section {
+    margin-bottom: 60px;
+    padding: 0 20px; /* Added horizontal padding */
+}
+
+.projects {
+    display: grid; /* Uses CSS Grid for layout */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive columns */
+    gap: 30px; /* More space between cards */
+}
+
+.project-card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px; /* More rounded */
+    padding: 25px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease; /* Smooth hover effects */
+}
+
+.project-card:hover {
+    transform: translateY(-8px); /* Lift higher on hover */
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15); /* Stronger shadow on hover */
+}
+
+.project-card h3 {
+    color: #34495e;
+    margin-top: 0;
+    font-size: 1.6em;
+    margin-bottom: 12px;
+}
+
+.project-card p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.project-card .tech-stack span {
+    display: inline-block; /* Allows spans to sit side-by-side */
+    background-color: #e0e7ff; /* Light blue tag background */
+    color: #4a67a3; /* Darker blue text for tags */
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 0.85em;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    font-weight: 600; /* Bolder text for tags */
+}
+
+.project-card .links a {
+    display: inline-block;
+    background-color: #3498db; /* Blue button background */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    margin-right: 12px;
+    margin-top: 15px;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.project-card .links a:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Skills Section */
+.skills-section {
+    margin-bottom: 60px;
+    padding: 0 20px; /* Added horizontal padding */
+}
+
+.skills-list {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.skills-list h3 {
+    color: #34495e;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.skills-list ul {
+    list-style: none; /* Remove default bullet points */
+    padding: 0;
+    display: grid; /* Uses CSS Grid for layout */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive columns */
+    gap: 15px; /* More space between skill tags */
+}
+
+.skills-list ul li {
+    background-color: #e6f2f9; /* Light blue background for skill tags */
+    padding: 12px 18px; /* Larger padding */
+    border-radius: 8px; /* More rounded */
+    text-align: center;
+    font-size: 0.95em;
+    color: #2c3e50;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.skills-list ul li:hover {
+    background-color: #d1ecf1; /* Slightly darker on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Contact Section */
+.contact-section {
+    text-align: center;
+    margin-top: 60px;
+    padding: 50px;
+    background-color: #e0f2f7; /* Very light blue background */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 30px; /* Space before footer */
+}
+
+.contact-section h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2.5em;
+}
+
+.contact-section p {
+    font-size: 1.15em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.contact-section a {
+    background-color: #3498db;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: background-color 0.2s ease;
+}
+
+.contact-section a:hover {
+    background-color: #2980b9;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid #eee;
+    color: #777;
+    font-size: 0.9em;
+    padding-bottom: 20px;
+}
+
+/* Media Queries for Responsiveness (adjusts for smaller screens) */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 15px auto;
+    }
+
+    header h1 {
+        font-size: 2.2em;
+    }
+
+    section h2 {
+        font-size: 1.8em;
+    }
+
+    .profile-photo {
+        width: 120px; /* Smaller photo on small screens */
+        height: 120px;
+    }
+
+    .navbar a {
+        padding: 0 10px;
+        font-size: 0.95em;
+    }
+
+    .projects {
+        grid-template-columns: 1fr; /* Stack project cards on very small screens */
+    }
+
+    .skills-list ul {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    /* About Me responsive adjustments (stacking) */
+    .about-content-wrapper {
+        flex-direction: column; /* Stack items vertically on small screens */
+        text-align: center; /* Center text when stacked */
+    }
+    .about-text-content, .about-photo-content {
+        flex: none; /* Remove flex sizing */
+        width: 100%; /* Take full width */
+        text-align: center; /* Center content when stacked */
+    }
+    .about-me h2, .about-me .links {
+        text-align: center; /* Center these when stacked */
+    }
+    .profile-photo {
+        margin: 0 auto 25px auto; /* Center photo and add bottom margin when stacked */
+    }
+}
