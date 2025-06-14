@@ -1,6 +1,6 @@
-/* General Body and Container Styles */
+/* General Body & Container */
 body {
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* A more modern font stack */
+    font-family: 'Lato', sans-serif; /* A good default, but consider Google Fonts */
     margin: 0;
     padding: 0; /* Remove body padding, container will manage it */
     background-color: #f4f7f6; /* Light, calming background */
@@ -10,6 +10,7 @@ body {
 }
 
 .container {
+   
     max-width: 1000px; /* Slightly wider container for more content */
     margin: 0 auto; /* Centers the container */
     background-color: #ffffff;
@@ -19,6 +20,7 @@ body {
     margin-top: 30px; /* Space above container */
     margin-bottom: 30px; /* Space below container */
 }
+
 
 /* Header Styles */
 header {
@@ -41,14 +43,30 @@ header p {
     margin: 0 auto;
 }
 
-/* Section Headings (for About, Projects, Skills, Contact) */
+/* Section Headings (for About, Projects, Skills, Resume, Contact) */
 section h2 {
     text-align: center;
     color: #2c3e50;
     font-size: 2.2em;
     margin-bottom: 40px;
     padding-top: 20px; /* Space above section heading */
+    position: relative; /* For the pseudo-element underline */
+    padding-bottom: 10px; /* Space for the underline */
 }
+
+/* Underline for H2 headings */
+section h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #3498db; /* Blue underline */
+    border-radius: 5px;
+}
+
 
 /* Navigation Bar (Sticky at Top) */
 .navbar {
@@ -61,6 +79,7 @@ section h2 {
     top: 0; /* Sticks to the top edge */
     z-index: 1000; /* Ensures nav is above other content */
     border-radius: 8px 8px 0 0; /* Rounded top corners */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
 }
 
 .navbar a {
@@ -121,8 +140,8 @@ section h2 {
 }
 
 .profile-photo {
-    width: 200px; /* Fixed width/height for circular photo */
-    height: 200px;
+    width: 180px; /* Fixed width/height for circular photo */
+    height: 180px;
     border-radius: 50%; /* Makes the image circular */
     object-fit: cover; /* Ensures image fills the circle without distortion */
     border: 5px solid #3498db; /* Blue border around photo */
@@ -155,9 +174,10 @@ section h2 {
 }
 
 .projects {
-    display: grid; /* Uses CSS Grid for layout */
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive columns */
-    gap: 30px; /* More space between cards */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Keep this for controlled width */
+    gap: 30px;
+    margin-top: 20px;
 }
 
 .project-card {
@@ -167,6 +187,16 @@ section h2 {
     padding: 25px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.07);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease; /* Smooth hover effects */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Aligns content to the top within the card */
+    align-items: flex-start; /* Aligns items to the left within the card */
+
+    /* --- CRITICAL FOR HEIGHT CONSISTENCY --- */
+    min-height: 480px; /* Set a minimum height for all cards. ADJUST THIS VALUE! */
+                       /* It should be tall enough to accommodate your longest project's content */
+                       /* (image + title + truncated description + tech stack + links). */
+    /* -------------------------------------- */
 }
 
 .project-card:hover {
@@ -174,9 +204,20 @@ section h2 {
     box-shadow: 0 6px 20px rgba(0,0,0,0.15); /* Stronger shadow on hover */
 }
 
+/* Styles for images inside project cards */
+.project-card img {
+    max-width: 100%; /* Ensures image is not wider than its container */
+    height: 180px; /* FIXED HEIGHT for project images. Adjust as needed. */
+    object-fit: cover; /* Ensures image fills the space without distortion */
+    display: block; /* Ensures it behaves as a block element */
+    margin: 0 0 15px 0; /* Adjusted: No auto margin, push to top-left, add bottom space */
+    border-radius: 5px; /* Slightly rounded corners for the image */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for images */
+}
+
 .project-card h3 {
     color: #34495e;
-    margin-top: 0;
+    margin-top: 0; /* Ensure no extra space above the title */
     font-size: 1.6em;
     margin-bottom: 12px;
 }
@@ -185,6 +226,21 @@ section h2 {
     font-size: 1em;
     color: #555;
     margin-bottom: 20px;
+    flex-grow: 1; /* Allows paragraph to take up available space, pushing links down */
+
+    /* --- CRITICAL FOR TEXT TRUNCATION & HEIGHT CONSISTENCY --- */
+    max-height: 100px; /* Maximum height for the text content before it truncates. Adjust if needed. */
+    overflow: hidden; /* Hides content that exceeds max-height */
+    text-overflow: ellipsis; /* Adds "..." to truncated text */
+    display: -webkit-box; /* Required for -webkit-line-clamp */
+    -webkit-line-clamp: 5; /* Limit text to exactly 5 lines. Adjust this number (e.g., 4 or 6). */
+    -webkit-box-orient: vertical; /* Required for -webkit-line-clamp */
+    /* -------------------------------------- */
+}
+
+.project-card .tech-stack {
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 
 .project-card .tech-stack span {
@@ -199,6 +255,14 @@ section h2 {
     font-weight: 600; /* Bolder text for tags */
 }
 
+.project-card .links {
+    margin-top: auto; /* Pushes the links to the bottom if the card has extra space */
+    width: 100%; /* Ensures links take full width for proper alignment */
+    text-align: left; /* Align links within their container */
+    padding-top: 15px; /* Space above links from border */
+    border-top: 1px dashed #eee; /* Subtle separator */
+}
+
 .project-card .links a {
     display: inline-block;
     background-color: #3498db; /* Blue button background */
@@ -207,7 +271,6 @@ section h2 {
     border-radius: 6px;
     text-decoration: none;
     margin-right: 12px;
-    margin-top: 15px;
     font-weight: bold;
     transition: background-color 0.2s ease;
 }
@@ -261,6 +324,117 @@ section h2 {
     background-color: #d1ecf1; /* Slightly darker on hover */
     transform: translateY(-2px); /* Slight lift on hover */
 }
+
+/* Resume Section Styles */
+.resume-section {
+    text-align: center;
+    margin-top: 60px;
+    padding: 50px;
+    background-color: #f0f7ff; /* A slightly different light blue for distinction */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 60px; /* More space before contact/footer */
+}
+
+.resume-section h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2.5em; /* Keep it consistent with other section titles */
+}
+
+.resume-section p {
+    font-size: 1.15em;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 30px auto; /* Center text and add space below */
+    line-height: 1.7;
+}
+
+.resume-details {
+    text-align: left; /* Align details left */
+    max-width: 700px; /* Max width for readability */
+    margin: 30px auto; /* Center the details block */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.resume-details h3 {
+    color: #34495e;
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 5px;
+}
+.resume-details p {
+    font-size: 1em;
+    margin: 0 0 10px 0;
+    color: #444;
+}
+.resume-details ul {
+    list-style: disc;
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+.resume-details ul li {
+    margin-bottom: 5px;
+    color: #444;
+}
+.resume-details strong {
+    color: #007bff; /* Highlight important names */
+}
+
+
+.resume-actions {
+    margin-top: 30px;
+    display: flex; /* Use flexbox for buttons */
+    justify-content: center; /* Center buttons horizontally */
+    gap: 20px; /* Space between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+/* Button Styles (Primary & Secondary) */
+.button-primary,
+.button-secondary {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: all 0.3s ease; /* Smooth transition for both background and border */
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+.button-primary {
+    background-color: #3498db;
+    color: white;
+    border: 2px solid #3498db;
+}
+
+.button-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.button-secondary {
+    background-color: white;
+    color: #3498db;
+    border: 2px solid #3498db;
+}
+
+.button-secondary:hover {
+    background-color: #eaf6ff; /* Very light blue on hover */
+    color: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
 
 /* Contact Section */
 .contact-section {
@@ -340,6 +514,21 @@ footer {
         grid-template-columns: 1fr; /* Stack project cards on very small screens */
     }
 
+    /* Important: Remove min-height on project cards for small screens so they can adapt */
+    .project-card {
+        min-height: auto;
+    }
+
+    .project-card img {
+        height: auto; /* Allow image height to be dynamic on small screens */
+    }
+
+    .project-card p {
+        max-height: none; /* Remove max-height for full description on small screens */
+        -webkit-line-clamp: unset; /* Remove line clamping */
+        text-overflow: unset;
+    }
+
     .skills-list ul {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     }
@@ -359,5 +548,41 @@ footer {
     }
     .profile-photo {
         margin: 0 auto 25px auto; /* Center photo and add bottom margin when stacked */
+    }
+    /* Resume section responsiveness */
+    .resume-actions {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        gap: 15px; /* Adjust gap for stacked buttons */
+    }
+    .button-primary,
+    .button-secondary {
+        width: 90%; /* Make buttons take more width on small screens */
+        margin: 0 auto; /* Center them */
+    }
+
+    .resume-details {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2em;
+    }
+    .navbar a {
+        font-size: 0.9em;
+        margin: 0 5px;
+    }
+    section h2 {
+        font-size: 1.8em;
+    }
+    .contact-section a {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+    .button-primary,
+    .button-secondary {
+        font-size: 1em;
+        padding: 10px 20px;
     }
 }
